@@ -11,5 +11,9 @@ print("Sending sample payload...")
 channel = grpc.insecure_channel("localhost:5005")
 stub = order_pb2_grpc.OrderServiceStub(channel)
 
-response = stub.Get(order_pb2.Empty())
-print(response)
+if __name__ == "__main__":
+    response = stub.Get(order_pb2.Empty())
+    print(response)
+    for order in response.orders:
+        print(order.id)
+
